@@ -13,7 +13,7 @@ import java.util.Set;
      * Temporarily, I used some code found on internet
      * I probably rewrite or use properly licensed code due to not plagiarise code.
      *
-     * However, if coderrode grants permission usage of this code
+     * However, if coderodde grants permission usage of this code
      * I will appreciate.
      */
 
