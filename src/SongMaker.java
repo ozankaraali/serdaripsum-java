@@ -7,6 +7,7 @@ import java.util.Scanner;
  * Created by ozan on 6/29/17.
  */
 public class SongMaker {
+    private static final int WORDS_PER_STATE = 2;
     public SongMaker(){
         words = getWords();
     }
@@ -34,11 +35,9 @@ public class SongMaker {
     public String generateALine(){
         String songLine = "";
         int randLineLength = random.nextInt(max-min+1)+min;
-        for(int i = 0; i <randLineLength; i++){
-            int randomWord = random.nextInt(wordLength());
-            String[] splitted = words.split(" ");
-            songLine += splitted[randomWord]+" ";
-        }
+        String[] splitted = words.split(" ");
+        MarkovChain mc = new MarkovChain(splitted, WORDS_PER_STATE);
+        songLine = concat(mc.compose(randLineLength));
         String songL = songLine.substring(0, 1).toUpperCase() + songLine.substring(1);
         return songL;
     }
@@ -65,6 +64,10 @@ public class SongMaker {
     public int wordLength(){
         String[] splitted = words.split(" ");
         return splitted.length;
+    }
+
+    private static String concat(String... strings) {
+        return String.join(" ", strings);
     }
 }
 
